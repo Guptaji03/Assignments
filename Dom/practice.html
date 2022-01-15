@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/">
+        <label for="name">
+            Name
+        </label>
+        <input type="text" id="name">
+        <label for="Department">
+            Department
+        </label>
+        <select id="Department">
+            <option value="marketing">marketing</option>
+            <option value="finance">finance</option>
+            <option value="Hr">Hr</option>
+            <option value="sales">sales</option>
+            <option value="IA">IA</option>
+        </select>
+
+        <label for="Sales_year_1">
+            Sales year 1
+        </label>
+
+        <input type="number" id="Sales_year_1">
+        <label for="Sales_year_2">
+            Sales year 2
+        </label>
+
+        <input type="number" id="Sales_year_2">
+
+        <input type="submit">
+
+    </form>
+    <button id="increasing">increasing order</button>
+    <button id="decreasing">descending order</button>
+
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Sales year 1</th>
+
+                <th>Sales year 2</th>
+                <th>Average</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+</body>
+
+</html>
+<script>
+    document.querySelector("form").addEventListener("submit", createtable)
+
+    function createtable(event) {
+        event.preventDefault()
+        var tr = document.createElement("tr")
+        var td1 = document.createElement("td")
+        var td2 = document.createElement("td")
+        var td3 = document.createElement("td")
+        var td4 = document.createElement("td")
+        var td5 = document.createElement("td")
+
+        td1.append(document.getElementById("name").value)
+        td2.append(document.getElementById("Department").value)
+        td3.append(document.getElementById("Sales_year_1").value)
+        td4.append(document.getElementById("Sales_year_2").value)
+        var avg = ((+td3.innerText) + (+td4.innerText)) / 2
+        td5.append(avg)
+
+        tr.append(td1, td2, td3, td4, td5)
+        var x = document.querySelector("tbody")
+        x.append(tr)
+        // console.log(x)
+    }
+    document.getElementById("increasing").addEventListener("click",increase)
+
+    function increase(){
+        var y = document.querySelectorAll("tr")
+
+      for(var i=1;i<y.length;i++){
+          for(var j=1;j<y.length;j++){
+               var s=y[j].querySelectorAll("td")
+               var d=y[i].querySelectorAll("td")
+               if((+s[4].textContent) > (+d[4].textContent) ){
+                   var temp= y[j].innerHTML
+                   y[j].innerHTML=y[i].innerHTML
+                   y[i].innerHTML =temp
+               }
+          }
+
+      }
+           
+
+
+
+ //=====================================================       
+    //     var result=[]
+    //     for(var i=1;i<y.length;i++){
+    //        var x= y[i].querySelectorAll("td")
+    //        var n=x.length-1
+    //     //    console.log(x)
+    //        result.push([+(x[n].textContent),x])
+    //     }
+    // //    console.log(result)
+    // result.sort(function(a,b){return a[0]-b[0]})
+    //   for(var i=0;i<result.length;i++){
+    //     console.log(result[i][1])
+    //   }
+    }
+    document.getElementById("decreasing").addEventListener("click",decrease)
+
+function decrease(){
+    var y = document.querySelectorAll("tr")
+
+  for(var i=1;i<y.length;i++){
+      for(var j=1;j<y.length;j++){
+           var s=y[j].querySelectorAll("td")
+           var d=y[i].querySelectorAll("td")
+           if((+s[4].textContent) < (+d[4].textContent) ){
+               var temp= y[j].innerHTML
+               y[j].innerHTML=y[i].innerHTML
+               y[i].innerHTML =temp
+           }
+      }
+
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

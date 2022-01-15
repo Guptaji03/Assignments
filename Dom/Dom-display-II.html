@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 30%;
+            margin: auto;
+            background-color: rgb(145, 209, 195);
+
+        }
+    #form{
+        border: 2px solid;
+        background-color: rgb(216, 155, 155);
+       box-sizing: border-box;
+        width: 100%;
+        margin: auto;
+        text-align: center;
+    }
+    table{
+        box-sizing: border-box;
+    }
+    .buttons{
+    
+        text-align: center;
+        display: flex;
+        justify-content: space-around;
+
+    }
+    button{
+        color: rgb(241, 18, 18);
+        background-color: black;
+        height: 30px;
+        font-size: larger;
+        width: 40%;
+    }
+     
+</style>
+</head>
+<body>
+    <div class="container">
+    <form id="form">
+        <label for="name"> Name  : </label>
+        <input type="text" name="name" >
+  
+    <br> <br>
+    <label for="department"> Department  </label>
+        <select name="department" id=" dep">
+            <option value="">select</option>
+            <option value="Hr"> Hr</option>
+            <option value="finance">finance</option>
+            <option value="sales">sales</option>
+         
+          </select> 
+          <br> <br>
+          <label for="salesyear1"> sales year 1 : </label>
+        <input type="text" name="salesyear1">
+    <br> <br>
+    <label for=""> sales year 2 : </label>
+        <input type="text" name="salesyear2">
+        <br> <br>
+        <input type="submit" >
+    </form>
+    <br>
+    <div class="buttons">
+   <button onclick="sort('asc')">Ascending</button>
+
+   <button onclick="sort('dsc')">Decending</button>
+    </div>
+    
+
+    <br>
+    <table border="2" cellspacing="10" >
+        <thead>
+            <th>NAME</th>
+            <th>Department</th>
+            <th>SALES YEAR 1</th>
+            <th>SALES YEAR 2</th>
+            <th>AVERAGE</th>
+        </thead>
+
+         <tbody id="tbody">
+
+         </tbody>
+
+    </table>
+</div>
+</body>
+</html>
+<script>
+    var arr =[];
+    document.querySelector('#form').addEventListener("submit",arrhandler)
+    var tbody =document.getElementById('tbody')
+
+
+function arrhandler(){
+    event.preventDefault();
+    var name =event.target.name.value;
+    var department = event.target.department.value
+    var sell1 =event.target.salesyear1.value;
+    var sell2 =event.target.salesyear2.value;
+   console.log(name)
+ var employeeobj ={
+     name:name,
+     Depart:department,
+     sel1:sell1,
+     sel2:sell2,
+     avg: (Number(sell1) + Number(sell2))/2
+ }
+ arr.push(employeeobj)
+ console.log(arr)
+ display()
+
+
+}
+function display(){
+  
+    tbody.innerHTML=''
+    for(var i=0;i<arr.length;i++){
+        main(arr[i])
+    }
+}
+
+
+  function main(employeeobj){
+      
+   
+      var tr =document.createElement("tr")
+     var td1 =document.createElement("td")
+      td1.innerText=employeeobj.name
+     var td2 =document.createElement("td")
+     td2.innerText=employeeobj.Depart
+     var td3 =document.createElement("td")
+     td3.innerText =employeeobj.sel1
+     var td4 =document.createElement("td")
+     td4.innerText =employeeobj.sel2
+     var td5 =document.createElement("td")
+     td5.innerText =employeeobj.avg
+     
+          tr.append(td1,td2,td3,td4,td5)
+   tbody.append(tr)
+      
+  }
+  function sort(type){
+      if(type==="asc"){
+          arr.sort((a,b)=> a.avg -b.avg)
+      }
+      else{
+        arr.sort((a,b)=> b.avg -a.avg)
+      }
+      display()
+  }
+
+</script>
