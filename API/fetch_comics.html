@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: khaki;
+        }
+     .main{
+         display: grid;
+         grid-template-columns: repeat(4,1fr);
+         gap: 20px;
+          text-align: center;
+     }
+     .inner{
+         background-color: rgb(255, 239, 239);
+     }
+   
+     .img{
+         width: 80%;
+     }
+     /*Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+   .main{ grid-template-columns: repeat(1,1fr);
+   }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+    .main{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
+
+}
+    </style>
+</head>
+<body>
+    <div class="main" id="main">
+
+    </div>
+    
+</body>
+</html>
+
+<script>
+var url = " https://reqres.in/api/users"
+fetch(url)
+.then(function(res){
+    // console.log(res.json())
+    return res.json()
+})
+.then(function(mydata){
+   // console.log(mydata.data)
+    var arr =mydata.data
+      arr.forEach(appenddata)
+        // arr.forEach(element => {
+        //     appenddata(element)
+        // });
+  
+    // data(mydata)
+})
+
+.catch(function(error){
+  console.log(error)
+})
+   
+
+var main=document.getElementById("main")
+
+function appenddata(element){
+    console.log(element)
+var div =document.createElement("div")
+
+
+var img=document.createElement("img")
+img.src = element.avatar
+ img.setAttribute("class","img")
+var first =document.createElement("h1")
+ first.innerText = `${element.first_name}  ${element.last_name}`
+
+ var email =document.createElement("h3")
+ email.innerText =element.email
+
+div.append(img,first,email)
+
+div.setAttribute("class","inner")
+ 
+main.append(div)
+
+}
+
+
+
+
+</script>
