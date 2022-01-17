@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        .main{
+           text-align: center;
+           width: fit-content;
+           padding: 40px;
+           background-color: brown;
+           margin: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+    <form action="">
+        <label for="name">Name</label>
+        <input type="text" name="name">
+        <br><br>
+        <input type="submit">
+    </form>
+</div>
+</body>
+</html>
+<script>
+
+var form = document.querySelector("form")
+ form.addEventListener("submit",formsubmit)
+ function formsubmit(){
+     event.preventDefault();
+     var x=event.target.name.value
+     alert(x)
+ }
+</script>
