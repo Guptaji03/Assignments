@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+         width: 70%;
+         margin: auto;
+         background-color: rgb(92, 6, 53);
+         border: 2px solid rgb(165, 48, 5);
+         margin-top: 200px;
+        
+    }
+    .watch{
+        font-size: 60px;
+        background-color: chocolate;
+        border: 2px solid;
+        padding: 40px;
+        margin-top: 20px;
+        width: 300px;
+        text-align: center;
+       
+      
+    }
+    .input{
+        margin-top: 20px;
+    }
+     .buttons{
+        box-sizing: border-box;
+         display: flex;
+         gap: 20px;
+         margin: 40px;
+         
+     }
+     .btn{
+         font-size: xx-large;
+         box-shadow: black;
+     }
+.start{
+    background-color: crimson;
+
+}
+.pause{
+    background-color: cornflowerblue;
+}
+.reset{
+    background-color: red;
+}
+</style>
+</head>
+<body>
+    <div class="main">
+        <div class="watch" id="display">
+            00 : 00 : 00
+        </div>
+        
+        <div class="buttons">
+            <div>
+                <button class="start btn" id="start">Start</button>
+            </div>
+            <div class="pause">
+                <button class="pause btn" id="pause">Pause</button>
+            </div>
+            <div class="reset">
+                <button class="reset btn" id="reset">Reset</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+var start =document.getElementById("start")
+var pause =document.getElementById("pause")
+var reset =document.getElementById("reset")
+
+// var second =document.getElementById("second").value
+// var minute =document.getElementById("minute").value
+// var hour=document.getElementById("hour").value
+var second=0;
+var minute=0;
+var hour =0;
+
+
+var x
+
+start.addEventListener("click", startwatch)
+
+function startwatch(){
+   
+     x=  setInterval(() => {
+        pause.addEventListener("click",()=>{
+            clearInterval(x)
+        })  
+   
+   second++
+   if(second/60 ===1){
+       second=0;
+       minute++
+       if(minute/60===1){
+           minute=0
+           hour++
+       }
+   }
+
+
+var display =document.getElementById("display")
+    display.innerText = hour+':'+minute+':'+ second
+
+    
+
+
+    }, 1);
+  
+}
+
+reset.addEventListener("click",restart)
+
+function restart(){
+    var display =document.getElementById("display")
+    display.innerText = "00"+':'+"00"+':'+"00"
+    second=0
+    minute=0
+    hour=0
+    clearInterval(x)
+    
+
+}
+
+</script>
