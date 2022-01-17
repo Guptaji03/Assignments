@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main{
+          display: grid;
+          gap: 5px;
+        }
+     .container{
+         
+         background-color: rgb(148, 190, 226);
+         display: flex;
+        align-items: center;
+        width: 50%;
+       /* justify-content: center; */
+    justify-content: space-between;
+    padding: 20px;
+        
+     }
+     .checkbox{
+         height: 40px;
+         width: 40px;
+     }
+    </style>
+</head>
+<body>
+    
+    <form action="">
+    <label for="title">Title</label>
+    <input type="text" name="title" required>
+    <input type="submit">
+    </form>
+    <br><br>
+    <div id="main">
+
+    </div>
+</body>
+</html>
+<script>
+    var arr =[]
+    var count=0
+var form =document.querySelector("form")
+form.addEventListener("submit",formtodo)
+  
+function formtodo(){
+    count++
+    var data={}
+    event.preventDefault()
+    var div=document.createElement("div")
+    div.setAttribute("class","container")
+    var div1=document.createElement("div")
+    var x=event.target.title.value
+    data['title']=x
+    data['id']=count
+    data['status']=true
+    arr.push(data)
+    var heading =document.createElement("h2")
+    heading.innerText= x
+       
+      div1.append(heading)
+     var div2=document.createElement("div")
+
+    var check=document.createElement("input")
+    check.setAttribute("type","checkbox")
+    check.setAttribute("class","checkbox")
+    check.addEventListener("change",linethrough)
+    div2.append(check)
+
+    div.append(div1,div2)
+    
+var main =document.getElementById("main")
+main.append(div)
+
+}
+function linethrough(e){
+    var x =e.target.parentElement.parentElement
+    if(e.target.checked){
+        x.style.textDecoration ="line-through"
+        x.style.color ="green"
+
+    }
+    else{
+        x.style.textDecoration ="none"
+        x.style.color ="black"
+    }
+}
+
+</script>
